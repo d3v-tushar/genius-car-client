@@ -1,14 +1,11 @@
 import './App.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
+import router from './Router/Routes/Routes';
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: '/'
-    }
-  ])
+
   return (
-    <div>
+    <div data-theme='light' className='max-w-screen-xl mx-auto'>
       <RouterProvider router={router}></RouterProvider>
     </div>
   );
