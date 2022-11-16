@@ -20,11 +20,13 @@ const AuthProvider = ({children}) => {
 
     //Craete New User
     const craeteUser = (email, password) =>{
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
     };
 
     //Login Existing User
     const login = (email, password) =>{
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     };
 

@@ -11,7 +11,15 @@ const Header = () => {
     }
     const menuItems = <>
     <li className='semi-bold'><Link to='/'>Home</Link></li>
-    <li className='semi-bold'><Link to='/login'>Login</Link></li>
+    {
+        user?.email ?
+        <li className='semi-bold'><button onClick={handleLogOut}>Logout</button></li> :
+        <li className='semi-bold'><Link to='/login'>Login</Link></li>
+    }
+    {
+        user?.uid &&
+        <li className='semi-bold'><Link to='/orders'>Orders</Link></li>
+    }
     </>
     return (
         <div className="navbar h-20 mb-12 pt-12 bg-base-100">
