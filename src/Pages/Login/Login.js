@@ -19,8 +19,27 @@ const Login = () => {
         login(email, password)
         .then(result =>{
             const user = result.user;
-            console.log(user);
-            alert('Login Successfull', user?.displayName);
+            const currentUser = {
+              email: user?.email
+            };
+            console.log(currentUser);
+
+            //Get JWT Token
+            fetch('http://localhost:5000/jwt', {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json'
+              },
+              body: JSON.stringify(currentUser)
+            })
+            .then(res => res.json())
+            .then(data =>{
+              console.log(data);
+              //Local Storage is easiest but not the best place to store jwt token.
+              localStorage.setItem('genius-Token', data.token);
+              alert('Login Successfull', user?.displayName);
+              navigate(from, {replace: true});
+            })
             navigate(from, {replace: true});
         })
         .catch(error => console.error(error.message))
