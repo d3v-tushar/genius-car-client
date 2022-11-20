@@ -8,17 +8,17 @@ const Header = () => {
     const handleLogOut= () =>{
         logOut()
         .then(() => console.log('User Logged Out'))
-    }
+        .catch(error => console.error(error));
+    };
     const menuItems = <>
     <li className='semi-bold'><Link to='/'>Home</Link></li>
     {
         user?.email ?
-        <li className='semi-bold'><button onClick={handleLogOut}>Logout</button></li> :
+        <>
+            <li className='semi-bold'><Link to='/orders'>Orders</Link></li>
+            <li className='semi-bold'><button onClick={handleLogOut}>Logout</button></li>
+        </>:
         <li className='semi-bold'><Link to='/login'>Login</Link></li>
-    }
-    {
-        user?.uid &&
-        <li className='semi-bold'><Link to='/orders'>Orders</Link></li>
     }
     </>
     return (
@@ -56,7 +56,6 @@ const Header = () => {
                     user && <p>{user.displayName}</p>
                 }
                 <button className='btn btn-outline mx-2 btn-warning'>Appointment</button>
-                <button onClick={handleLogOut} className='btn btn-outline btn-warning'>Logout</button>
             </div>
         </div>
     );
