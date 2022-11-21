@@ -40,7 +40,6 @@ const Login = () => {
               alert('Login Successfull', user?.displayName);
               navigate(from, {replace: true});
             })
-            navigate(from, {replace: true});
         })
         .catch(error => console.error(error.message))
     }
