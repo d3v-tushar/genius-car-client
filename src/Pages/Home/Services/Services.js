@@ -8,7 +8,7 @@ const Services = () => {
     const [isAsc, setIsAsc] = useState(true);
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/services?order=${isAsc ? 'asce' : 'disc'}`)
+        fetch(`https://genius-car-server-three-snowy.vercel.app/services?order=${isAsc ? 'asce' : 'disc'}`)
         .then(res => res.json())
         .then(data => setServices(data))
         .catch(error => console.error(error));

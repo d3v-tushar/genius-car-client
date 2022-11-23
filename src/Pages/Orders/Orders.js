@@ -7,7 +7,7 @@ const Orders = () => {
   const [order, setOrder] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+    fetch(`https://genius-car-server-three-snowy.vercel.app/orders?email=${user?.email}`, {
       headers: {
         authorization : `Bearer ${localStorage.getItem('genius-Token')}`
       }
@@ -26,7 +26,7 @@ const Orders = () => {
   const handleDelete = (id) =>{
     const proceed = window.confirm('Are You Sure, You Want to cancel this order?');
         if(proceed){
-            fetch(`http://localhost:5000/orders/${id}`, {
+            fetch(`https://genius-car-server-three-snowy.vercel.app/orders/${id}`, {
                 method: 'DELETE',
                 headers: {
                   authorization : `Bearer ${localStorage.getItem('genius-Token')}`
@@ -47,7 +47,7 @@ const Orders = () => {
     };
 
     const handleStatusUpdate = id =>{
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://genius-car-server-three-snowy.vercel.app/orders/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type' : 'application/json',

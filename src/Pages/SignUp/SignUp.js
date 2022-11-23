@@ -1,11 +1,16 @@
 import React from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import image from "../../assets/images/login/login.svg";
 import { AuthContext } from "../../context/AuthProvider";
+import { setJsonToken } from "../../utlities/AuthToken";
 
 const SignUp = () => {
     const {craeteUser, googleSignIn, updateUserProfile} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
   const handleSignUp = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -17,6 +22,11 @@ const SignUp = () => {
     .then(result =>{
         const user = result.user;
         console.log(user);
+
+        //Alternative way to set jwt in localStorage
+        setJsonToken(user);
+        alert('Signup Successfull', user?.displayName);
+        navigate(from, {replace: true});
         updateUserProfile(name);
     })
     .catch(error => console.error(error));
@@ -28,6 +38,11 @@ const SignUp = () => {
     .then(result =>{
         const user = result.user;
         console.log(user);
+
+        //Alternative way to set jwt in localStorage
+        setJsonToken(user);
+        alert('Successfull', user?.displayName);
+        navigate(from, {replace: true});
     })
     .catch(error => console.error(error.message))
   }
