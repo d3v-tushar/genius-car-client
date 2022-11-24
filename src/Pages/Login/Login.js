@@ -3,10 +3,12 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import image from '../../assets/images/login/login.svg';
 import { AuthContext } from "../../context/AuthProvider";
+import useTitle from "../../CustomHook/useTitle";
 import { setJsonToken } from "../../utlities/AuthToken";
 
 
 const Login = () => {
+  useTitle('Login');
     const {login} = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();

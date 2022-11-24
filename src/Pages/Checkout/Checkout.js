@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import useTitle from '../../CustomHook/useTitle';
 
 const Checkout = () => {
+    useTitle('Checkout');
     const { _id, title, price} = useLoaderData();
     const {user} = useContext(AuthContext);
 
